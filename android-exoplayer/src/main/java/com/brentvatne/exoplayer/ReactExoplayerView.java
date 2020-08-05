@@ -18,6 +18,7 @@ import android.widget.ImageButton;
 import com.brentvatne.react.R;
 import com.brentvatne.receiver.AudioBecomingNoisyReceiver;
 import com.brentvatne.receiver.BecomingNoisyListener;
+import com.brentvatne.drm.DrmtodayHttpMediaDrmCallback;
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.Dynamic;
 import com.facebook.react.bridge.LifecycleEventListener;
@@ -477,7 +478,7 @@ class ReactExoplayerView extends FrameLayout implements
         if (Util.SDK_INT < 18) {
             return null;
         }
-        HttpMediaDrmCallback drmCallback = new HttpMediaDrmCallback(licenseUrl,
+        DrmtodayHttpMediaDrmCallback drmCallback = new DrmtodayHttpMediaDrmCallback(licenseUrl,
                 buildHttpDataSourceFactory(false));
         if (keyRequestPropertiesArray != null) {
             for (int i = 0; i < keyRequestPropertiesArray.length - 1; i += 2) {
