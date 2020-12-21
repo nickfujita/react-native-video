@@ -1804,12 +1804,16 @@ didCancelLoadingRequest:(AVAssetResourceLoadingRequest *)loadingRequest {
               }
               if (spcData != nil) {
                 if(self.onGetLicense) {
-                  NSString *spcStr = [[NSString alloc] initWithData:spcData encoding:NSASCIIStringEncoding];
+                  NSString *base64Encoded = [spcData base64EncodedStringWithOptions:0];
                   self->_requestingCertificate = YES;
-                  self.onGetLicense(@{@"spc": spcStr,
+                  if (licenseServer == nil) {
+                    licenseServer = ""
+                  }
+                  self.onGetLicense(@{@"licenseUrl": licenseServer,
                                       @"contentId": contentId,
-                                      @"spcBase64": [[[NSData alloc] initWithBase64EncodedData:certificateData options:NSDataBase64DecodingIgnoreUnknownCharacters] base64EncodedStringWithOptions:0],
-                                      @"target": self.reactTag});
+                                      @"spcBase64": base64Encoded,
+                                      @"target": self.reactTag}
+                                    );
                 } else if(licenseServer != nil) {
                   NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
                   [request setHTTPMethod:@"POST"];
