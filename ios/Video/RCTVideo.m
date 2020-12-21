@@ -1796,10 +1796,11 @@ didCancelLoadingRequest:(AVAssetResourceLoadingRequest *)loadingRequest {
               if (spcData != nil) {
                 NSString *spcEncoded = [spcData base64EncodedStringWithOptions:0];
                 if(self.onGetLicense) {
+                  NSString *spcStr = [[NSString alloc] initWithData:spcData encoding:NSASCIIStringEncoding];
                   self->_requestingCertificate = YES;
-                  self.onGetLicense(@{@"licenseUrl": licenseServer,
+                  self.onGetLicense(@{@"spc": spcStr,
                                       @"contentId": contentId,
-                                      @"spc": spcEncoded,
+                                      @"spcBase64": [[[NSData alloc] initWithBase64EncodedData:certificateData options:NSDataBase64DecodingIgnoreUnknownCharacters] base64EncodedStringWithOptions:0],
                                       @"target": self.reactTag});
                 } else if(licenseServer != nil) {
 
