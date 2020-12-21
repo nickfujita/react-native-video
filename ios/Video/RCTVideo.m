@@ -1812,7 +1812,6 @@ didCancelLoadingRequest:(AVAssetResourceLoadingRequest *)loadingRequest {
                                       @"spcBase64": [[[NSData alloc] initWithBase64EncodedData:certificateData options:NSDataBase64DecodingIgnoreUnknownCharacters] base64EncodedStringWithOptions:0],
                                       @"target": self.reactTag});
                 } else if(licenseServer != nil) {
-                  
                   NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
                   [request setHTTPMethod:@"POST"];
                   [request setURL:[NSURL URLWithString:licenseServer]];
