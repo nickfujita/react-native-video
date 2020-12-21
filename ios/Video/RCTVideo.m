@@ -1764,7 +1764,6 @@ didCancelLoadingRequest:(AVAssetResourceLoadingRequest *)loadingRequest {
   }
   _loadingRequest = loadingRequest;
   NSURL *url = loadingRequest.request.URL;
-
   if (self->_drm != nil) {
     NSString *contentId;
     NSString *contentIdOverride = (NSString *)[self->_drm objectForKey:@"contentId"];
