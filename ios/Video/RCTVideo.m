@@ -1807,7 +1807,7 @@ didCancelLoadingRequest:(AVAssetResourceLoadingRequest *)loadingRequest {
                   NSString *base64Encoded = [spcData base64EncodedStringWithOptions:0];
                   self->_requestingCertificate = YES;
                   if (licenseServer == nil) {
-                    licenseServer = ""
+                    licenseServer = @"";
                   }
                   self.onGetLicense(@{@"licenseUrl": licenseServer,
                                       @"contentId": contentId,
